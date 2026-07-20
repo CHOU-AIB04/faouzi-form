@@ -1,32 +1,18 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Faouzi Community</title>
+<title>برنامج التداول المباشر</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-	/* Typography */
 	--font-display: 'Fraunces', 'Georgia', serif;
-	--font-family: 'Inter', -apple-system, sans-serif;
-	--font-weight-normal: 400;
-	--font-weight-bold: 600;
-	--font-size-body: 13px;
-	--font-size-label: 13px;
-	--font-size-test-notice: 12px;
-	--font-size-input: 15px;
-	--font-size-header: 30px;
-	--font-size-paragraph: 14.5px;
-	--font-size-link: 12px;
-	--font-size-error: 12.5px;
-	--font-size-subheader: 14px;
+	--font-family: 'Tajawal', -apple-system, sans-serif;
 
-	/* Palette — warm espresso / brushed gold */
 	--color-background: #0d0b09;
-	--color-background-2: #14100c;
 	--color-card-bg: rgba(255, 253, 248, 0.035);
 	--color-card-border: rgba(212, 175, 110, 0.16);
 	--color-card-shadow: rgba(0, 0, 0, 0.55);
@@ -36,30 +22,14 @@
 	--color-header-subtext: #a89a83;
 	--color-label: #cabfae;
 	--color-input-border: rgba(255, 255, 255, 0.10);
-	--color-input-text: #efe8db;
-	--color-focus-border: #cda15b;
 	--color-submit-btn-bg: linear-gradient(135deg, #d8ae67, #b4823a);
 	--color-submit-btn-text: #16110a;
 	--color-error: #ff7a68;
-	--color-required: #cda15b;
-	--color-html-text: #cabfae;
+	--color-success: #7fd99a;
 
-	/* Radii */
 	--border-radius-card: 18px;
-	--border-radius-input: 10px;
-
-	/* Spacing */
-	--padding-container-top: 24px;
-	--padding-card: 40px;
-	--margin-bottom-card: 16px;
-	--padding-form-input: 14px;
-
-	/* Dimensions */
-	--container-width: 440px;
-	--submit-btn-height: 52px;
-
-	--box-shadow-card: 0 30px 70px -20px var(--color-card-shadow), 0 0 0 1px rgba(255,255,255,0.02);
-	--opacity-placeholder: 0.42;
+	--border-radius-input: 12px;
+	--container-width: 640px;
 }
 
 * { box-sizing: border-box; }
@@ -70,18 +40,17 @@ html, body {
 	min-height: 100vh;
 	background: var(--color-background);
 	font-family: var(--font-family);
-	color: var(--color-html-text);
+	color: var(--color-label);
 	-webkit-font-smoothing: antialiased;
 }
 
-/* Ambient backdrop */
 body {
 	position: relative;
 	overflow-x: hidden;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 48px 20px;
+	padding: 56px 20px;
 }
 
 body::before {
@@ -98,7 +67,6 @@ body::before {
 }
 
 body::after {
-	/* fine grain texture for a premium, non-flat surface */
 	content: "";
 	position: fixed;
 	inset: 0;
@@ -113,7 +81,6 @@ body::after {
 	z-index: 1;
 	width: 100%;
 	max-width: var(--container-width);
-	padding-top: var(--padding-container-top);
 }
 
 .brand-mark {
@@ -122,18 +89,13 @@ body::after {
 	justify-content: center;
 	gap: 10px;
 	margin-bottom: 22px;
-	letter-spacing: 0.16em;
-	text-transform: uppercase;
-	font-size: 11px;
+	letter-spacing: 0.08em;
+	font-size: 12px;
 	color: var(--color-gold);
-	opacity: 0.85;
+	opacity: 0.9;
 }
 
-.brand-mark .line {
-	width: 24px;
-	height: 1px;
-	background: linear-gradient(90deg, transparent, var(--color-gold));
-}
+.brand-mark .line { width: 24px; height: 1px; background: linear-gradient(90deg, transparent, var(--color-gold)); }
 .brand-mark .line.right { background: linear-gradient(90deg, var(--color-gold), transparent); }
 
 .card {
@@ -143,18 +105,13 @@ body::after {
 	-webkit-backdrop-filter: blur(20px);
 	border: 1px solid var(--color-card-border);
 	border-radius: var(--border-radius-card);
-	box-shadow: var(--box-shadow-card);
-	padding: var(--padding-card);
-	margin-bottom: var(--margin-bottom-card);
+	box-shadow: 0 30px 70px -20px var(--color-card-shadow), 0 0 0 1px rgba(255,255,255,0.02);
+	padding: 40px;
 	animation: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@keyframes rise {
-	from { opacity: 0; transform: translateY(14px); }
-	to { opacity: 1; transform: translateY(0); }
-}
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 
-/* thin gold hairline along the top edge of the card */
 .card::before {
 	content: "";
 	position: absolute;
@@ -165,49 +122,82 @@ body::after {
 	opacity: 0.6;
 }
 
-.form-header {
-	text-align: center;
-	margin-bottom: 30px;
-}
+.form-header { text-align: center; margin-bottom: 30px; }
 
 .form-header h1 {
 	font-family: var(--font-display);
-	font-weight: 500;
-	font-size: var(--font-size-header);
+	font-weight: 600;
+	font-size: 28px;
 	color: var(--color-header);
-	letter-spacing: 0.01em;
 	margin: 0 0 8px;
 }
 
 .form-header p {
-	font-size: var(--font-size-paragraph);
+	font-size: 14.5px;
 	color: var(--color-header-subtext);
 	margin: 0;
-	line-height: 1.5;
+	line-height: 1.6;
 }
 
-.inputs-wrapper { display: flex; flex-direction: column; gap: 18px; }
+.feature-list {
+	list-style: none;
+	margin: 0 0 28px;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
 
-.form-group { display: flex; flex-direction: column; gap: 7px; }
+.feature-list li {
+	position: relative;
+	padding-right: 32px;
+	font-size: 15px;
+	line-height: 1.8;
+	color: var(--color-label);
+}
+
+.feature-list li::before {
+	content: "✓";
+	position: absolute;
+	right: 0;
+	top: 1px;
+	width: 22px;
+	height: 22px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 12px;
+	font-weight: 700;
+	color: var(--color-submit-btn-text);
+	background: var(--color-submit-btn-bg);
+	border-radius: 50%;
+}
+
+.offer-meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 14px;
+	border-top: 1px solid var(--color-card-border);
+	padding-top: 22px;
+	margin-bottom: 30px;
+}
+
+.form-group { margin-bottom: 22px; display: flex; flex-direction: column; gap: 8px; }
 
 .form-label {
-	font-size: var(--font-size-label);
+	font-size: 14px;
 	color: var(--color-label);
-	font-weight: 500;
-	letter-spacing: 0.01em;
+	font-weight: 600;
 }
 
-.form-required::after {
-	content: " *";
-	color: var(--color-required);
-}
+.required-mark { color: var(--color-gold); }
 
 .form-input {
 	width: 100%;
-	padding: var(--padding-form-input) 15px;
-	font-size: var(--font-size-input);
+	padding: 14px 16px;
+	font-size: 15px;
 	font-family: var(--font-family);
-	color: var(--color-input-text);
+	color: var(--color-header);
 	background: rgba(255,255,255,0.035);
 	border: 1px solid var(--color-input-border);
 	border-radius: var(--border-radius-input);
@@ -215,18 +205,20 @@ body::after {
 	transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
 }
 
-.form-input::placeholder { opacity: var(--opacity-placeholder); color: var(--color-input-text); }
-
+.form-input::placeholder { color: var(--color-header-subtext); opacity: 0.6; }
 .form-input:hover { border-color: rgba(255,255,255,0.18); }
 
 .form-input:focus {
-	border-color: var(--color-focus-border);
+	border-color: var(--color-gold);
 	background: rgba(255,255,255,0.05);
 	box-shadow: 0 0 0 3px rgba(205,161,91,0.14);
 }
 
-p[class^="error-"] {
-	font-size: var(--font-size-error);
+.form-input.input-error { border-color: var(--color-error); }
+.form-input.input-error:focus { box-shadow: 0 0 0 3px rgba(255,122,104,0.14); }
+
+.error-text {
+	font-size: 12.5px;
 	color: var(--color-error);
 	margin: 0;
 	max-height: 0;
@@ -235,18 +227,32 @@ p[class^="error-"] {
 	transition: max-height 0.2s ease, opacity 0.2s ease;
 }
 
-p[class^="error-"].error-show {
-	max-height: 40px;
-	opacity: 1;
-	margin-top: 2px;
+.error-text.error-show { max-height: 30px; opacity: 1; }
+
+.meta-item {
+	flex: 1;
+	min-width: 200px;
+	background: rgba(255,255,255,0.035);
+	border: 1px solid var(--color-input-border);
+	border-radius: var(--border-radius-input);
+	padding: 14px 18px;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
 }
 
-.error-hidden { display: block; }
+.meta-label { font-size: 12px; letter-spacing: 0.03em; color: var(--color-gold); font-weight: 700; }
+.meta-value { font-size: 15px; color: var(--color-header); font-weight: 500; }
 
-#submit-btn {
+.meta-item.price {
+	background: linear-gradient(135deg, rgba(216,174,103,0.14), rgba(180,130,58,0.08));
+	border-color: rgba(212, 175, 110, 0.35);
+}
+.meta-item.price .meta-value { font-size: 20px; font-weight: 800; color: var(--color-gold-bright); }
+
+#register-btn {
 	width: 100%;
-	height: var(--submit-btn-height);
-	margin-top: 28px;
+	height: 54px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -256,44 +262,100 @@ p[class^="error-"].error-show {
 	border: none;
 	border-radius: var(--border-radius-input);
 	font-family: var(--font-family);
-	font-size: 15px;
-	font-weight: 700;
-	letter-spacing: 0.02em;
+	font-size: 16px;
+	font-weight: 800;
+	letter-spacing: 0.01em;
 	cursor: pointer;
-	transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+	transition: transform 0.2s ease, filter 0.2s ease;
 	box-shadow: 0 10px 30px -10px rgba(205,161,91,0.55);
 }
 
-#submit-btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
-#submit-btn:active { transform: translateY(0); }
+#register-btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
+#register-btn:active { transform: translateY(0); }
+#register-btn:disabled { filter: grayscale(0.2) brightness(0.85); cursor: not-allowed; transform: none; }
 
-#submit-btn:disabled {
-	filter: grayscale(0.15) brightness(0.85);
-	cursor: not-allowed;
-	transform: none;
+.spinner {
+	width: 18px;
+	height: 18px;
+	border: 2.5px solid rgba(22,17,10,0.35);
+	border-top-color: var(--color-submit-btn-text);
+	border-radius: 50%;
+	animation: spin 0.8s linear infinite;
+	display: none;
 }
-
-#submit-btn span { display: none; line-height: 0; }
-#submit-btn:disabled span { display: inline-flex; animation: spin 0.9s linear infinite; }
-#submit-btn svg path { fill: currentColor; }
+#register-btn.loading .spinner { display: inline-block; }
+#register-btn.loading .btn-label { opacity: 0.85; }
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
-#submitted-form {
+.form-note {
 	text-align: center;
-	animation: rise 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+	font-size: 12px;
+	color: rgba(168,154,131,0.6);
+	margin-top: 14px;
 }
 
-#submitted-form .form-header { margin-bottom: 0; }
+/* ---- Result state (success / error) ---- */
+#result-state { display: none; text-align: center; }
 
-#submitted-header {
+.result-icon {
+	width: 74px;
+	height: 74px;
+	margin: 0 auto 22px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(127, 217, 154, 0.12);
+	border: 1px solid rgba(127, 217, 154, 0.35);
+	animation: pop 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.result-icon.error {
+	background: rgba(255, 122, 104, 0.12);
+	border-color: rgba(255, 122, 104, 0.35);
+}
+
+@keyframes pop { from { transform: scale(0.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+.result-icon svg { width: 34px; height: 34px; }
+
+#result-title {
 	font-family: var(--font-display);
+	font-size: 26px;
+	font-weight: 600;
+	color: var(--color-header);
+	margin: 0 0 10px;
 }
+
+#result-text {
+	font-size: 15px;
+	line-height: 1.8;
+	color: var(--color-header-subtext);
+	margin: 0 auto 26px;
+	max-width: 440px;
+}
+
+#retry-btn {
+	display: none;
+	margin: 0 auto;
+	background: transparent;
+	border: 1px solid var(--color-card-border);
+	color: var(--color-gold);
+	padding: 12px 26px;
+	border-radius: var(--border-radius-input);
+	font-family: var(--font-family);
+	font-size: 14px;
+	font-weight: 700;
+	cursor: pointer;
+	transition: border-color 0.2s ease, color 0.2s ease;
+}
+#retry-btn:hover { border-color: var(--color-gold); color: var(--color-gold-bright); }
 
 .footnote {
 	text-align: center;
 	font-size: 11px;
-	letter-spacing: 0.04em;
+	letter-spacing: 0.03em;
 	color: rgba(168,154,131,0.5);
 	margin-top: 22px;
 }
@@ -308,434 +370,163 @@ p[class^="error-"].error-show {
 			<span class="line right"></span>
 		</div>
 
-		<section>
+		<div class="card" id="offer-card">
 
-			<form class="card" action="#" method="POST" name="n8n-form" id="n8n-form" novalidate="">
+			<!-- ===== Offer view ===== -->
+			<div id="offer-state">
 				<div class="form-header">
-					<h1>Rejoignez la liste</h1>
-					<p style="white-space: pre-line">Laissez vos coordonnées pour rester connecté à la communauté.</p>
+					<h1>برنامج التداول المباشر</h1>
+					<p>مجموعة محدودة، متابعة أسبوعية، ومسار كامل نحو الحسابات الممولة.</p>
 				</div>
 
-				<div class="inputs-wrapper">
-					<div class="form-group">
-						<label class="form-label form-required" for="field-0">Vos nom et prénom</label>
-						<input class="form-input" type="text" id="field-0" name="field-0" value="" placeholder="Ex. Chouaib El Amrani">
-						<p class="error-field-0 error-hidden">
-							This field is required
-						</p>
+				<ul class="feature-list">
+					<li>تداول مباشر يوميًا مع مجموعة محدودة (بحد أقصى 20 شخصًا)</li>
+					<li>توفير دفتر تداول (Trading Journal) شخصي لكل متداول</li>
+					<li>إعداد خطة تداول مخصصة تناسب أسلوب وأهداف كل متداول</li>
+					<li>متابعة الأداء أسبوعيًا، مع اجتماعات فردية (1 إلى 1) عند الحاجة</li>
+					<li>تحليل مفصل للأداء (متوسط نسبة العائد إلى المخاطرة RR، نسبة النجاح Win Rate، درجة الالتزام Consistency Score، وغيرها)</li>
+					<li>حصتا تدريب أسبوعيًا لمعالجة نقاط الضعف وتصحيح الأخطاء</li>
+					<li>مراجعة وتحليل جميع الصفقات الرابحة والخاسرة لاستخلاص الدروس</li>
+					<li>دعم يومي للإجابة عن الأسئلة ومساعدة المتداولين على تجاوز الصعوبات</li>
+					<li>تمارين عملية وواجبات بين جلسات التدريب لتعزيز التعلم</li>
+					<li>تعليم إدارة رأس المال وإدارة المخاطر بما يتوافق مع متطلبات حسابات التمويل (Funded Accounts)</li>
+					<li>التحضير لاجتياز مراحل التقييم والحفاظ على الحسابات الممولة</li>
+					<li>تدريب على الانضباط النفسي والتحكم في المشاعر أثناء التداول</li>
+					<li>الوصول إلى تسجيلات جلسات التدريب طوال مدة البرنامج</li>
+					<li>تقييم شامل في نهاية البرنامج مع خطة تطوير شخصية لكل متداول</li>
+				</ul>
+
+				<div class="offer-meta">
+					<div class="meta-item">
+						<span class="meta-label">الفترة</span>
+						<span class="meta-value">من سبتمبر 2026 إلى يونيو 2027 (9 أشهر)</span>
+					</div>
+					<div class="meta-item price">
+						<span class="meta-label">السعر</span>
+						<span class="meta-value">500 دولار أمريكي</span>
 					</div>
 				</div>
 
-				<button id="submit-btn" type="submit">
-					<span><svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 0 512 512">
-							<path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"></path>
-						</svg></span>
-					Rejoindre
-				</button>
-			</form>
-
-			<div class="card" id="submitted-form" style="display: none;">
-				<div class="form-header">
-						<h1 id="submitted-header">Merci !</h1>
-						<p id="submitted-content">
-							Votre inscription a bien été enregistrée.
-						</p>
+				<div class="form-group">
+					<label class="form-label" for="full-name">الاسم الكامل <span class="required-mark">*</span></label>
+					<input class="form-input" type="text" id="full-name" name="full-name" placeholder="اكتب اسمك الكامل">
+					<p class="error-text" id="name-error">هذا الحقل مطلوب</p>
 				</div>
+
+				<button id="register-btn" type="button">
+					<span class="spinner"></span>
+					<span class="btn-label">التسجيل الآن</span>
+				</button>
+				<p class="form-note">بالضغط على "التسجيل الآن" سيتم تأكيد رغبتك في الانضمام إلى البرنامج.</p>
 			</div>
 
-			<p class="footnote">Faouzi Community</p>
+			<!-- ===== Result view (success / error) ===== -->
+			<div id="result-state">
+				<div class="result-icon" id="result-icon"></div>
+				<h1 id="result-title">تم استلام طلبك بنجاح</h1>
+				<p id="result-text">شكرًا لتسجيلك في برنامج التداول المباشر. سيتواصل معك فريقنا قريبًا لتأكيد التفاصيل والخطوات التالية.</p>
+				<button id="retry-btn" type="button">إعادة المحاولة</button>
+			</div>
 
-			<input id="useResponseData" style="display: none;" value="false">
-		</section>
+		</div>
+
+		<p class="footnote">Faouzi Community</p>
 	</div>
+
 	<script>
-		function updateError(errorElement, action = 'add', message = '') {
-			if(action === 'add') {
-				errorElement.textContent = message;
-				errorElement.classList.add('error-show');
-			} else {
-				errorElement.classList.remove('error-show');
+		// ⚠️ استبدل الرابط أدناه برابط الـ Webhook الخاص بك (n8n / Make / أي أداة أخرى)
+		const WEBHOOK_URL = "https://YOUR-WEBHOOK-URL-HERE";
+
+		const offerState = document.getElementById('offer-state');
+		const resultState = document.getElementById('result-state');
+		const registerBtn = document.getElementById('register-btn');
+		const retryBtn = document.getElementById('retry-btn');
+		const resultIcon = document.getElementById('result-icon');
+		const resultTitle = document.getElementById('result-title');
+		const resultText = document.getElementById('result-text');
+		const nameInput = document.getElementById('full-name');
+		const nameError = document.getElementById('name-error');
+
+		nameInput.addEventListener('input', () => {
+			if (nameInput.value.trim() !== '') {
+				nameInput.classList.remove('input-error');
+				nameError.classList.remove('error-show');
 			}
-		}
+		});
 
-		function validateInput(input, errorElement) {
-			const value = input.value.trim();
-			const type = input.type;
-
-			if (type === 'email' && value !== '') {
-				return validateEmailInput(value, errorElement);
-			} else if (type === 'number' && value !== '') {
-				if (isNaN(value)) {
-					updateError(errorElement, 'add', 'Enter only numbers in this field');
-					return false;
-				} else {
-					updateError(errorElement, 'remove');
-					return true;
-				}
-			} else if (value === '') {
-				updateError(errorElement, 'add', 'This field is required');
-				return false;
-			} else {
-				updateError(errorElement, 'remove');
-				return true;
-			}
-		}
-
-		function validateEmailInput(value, errorElement) {
-			const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-			const isValidEmail = regex.test(value);
-
-			if (!isValidEmail) {
-				updateError(errorElement, 'add', 'Enter a valid email address in this field');
-				return false;
-			} else {
-				errorElement.textContent = 'This field is required';
-				updateError(errorElement, 'remove');
-				return true;
-			}
-		}
-
-		function getSelectedValues(input) {
-			const selectedValues = [];
-			const checkboxes = input.querySelectorAll('.multiselect-checkbox');
-
-			checkboxes.forEach((checkbox, index) => {
-				if (checkbox.checked) {
-					selectedValues.push(checkbox.value.trim());
-				}
-			});
-
-			return selectedValues;
-		}
-
-		function getDataValues(input) {
-			const radio = input.dataset.radioSelect ? true : false;
-			const exact = input.dataset.exactSelect ? parseInt(input.dataset.exactSelect, 10) : null;
-			const maxSelect = input.dataset.maxSelect ? parseInt(input.dataset.maxSelect, 10) : null;
-			const minSelect = input.dataset.minSelect ? parseInt(input.dataset.minSelect, 10) : null;
-			return { radio, exact, maxSelect, minSelect };
-		}
-
-		function validateMultiselect(input, errorElement) {
-			const values = getSelectedValues(input);
-			const data = getDataValues(input);
-			const required = input.classList.contains('form-required');
-
-			if (required && !values.length) {
-				updateError(errorElement, 'add', 'This field is required');
+		function validateName() {
+			const value = nameInput.value.trim();
+			if (value === '') {
+				nameInput.classList.add('input-error');
+				nameError.classList.add('error-show');
+				nameInput.focus();
 				return false;
 			}
-
-			if (data.exact && values.length !== data.exact) {
-				const optionText = data.exact === 1 ? 'option' : 'options';
-				updateError(errorElement, 'add', `You must select exactly ${data.exact} ${optionText}`);
-				return false;
-			}
-
-			if (data.minSelect && values.length < data.minSelect) {
-				const optionText = data.minSelect === 1 ? 'option' : 'options';
-				updateError(errorElement, 'add', `You must select at least ${data.minSelect} ${optionText}`);
-				return false;
-			}
-
-			if(data.maxSelect && values.length > data.maxSelect) {
-				const optionText = data.maxSelect === 1 ? 'option' : 'options';
-				updateError(errorElement, 'add', `You can select a maximum of ${data.maxSelect} ${optionText}`);
-				return false;
-			}
-
-			updateError(errorElement, 'remove');
+			nameInput.classList.remove('input-error');
+			nameError.classList.remove('error-show');
 			return true;
 		}
 
-		const form = document.querySelector('#n8n-form');
+		const successIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="#7fd99a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+		const errorIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="#ff7a68" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`;
 
-		document.querySelectorAll("input[type=number]").forEach(function (element) {
-			element.addEventListener("wheel", function(event) {
-				if (document.activeElement === event.target) {
-					event.preventDefault();
-				}
-			});
-		});
+		function showResult({ success, title, text }) {
+			offerState.style.display = 'none';
+			resultState.style.display = 'block';
+			resultIcon.className = success ? 'result-icon' : 'result-icon error';
+			resultIcon.innerHTML = success ? successIcon : errorIcon;
+			resultTitle.textContent = title;
+			resultText.textContent = text;
+			retryBtn.style.display = success ? 'none' : 'inline-block';
+		}
 
-		document.querySelectorAll('input[type="file"]').forEach(fileInput => {
-			const clearButton = fileInput.nextElementSibling;
-			let previousFiles = [];
+		async function submitRegistration() {
+			if (!validateName()) return;
 
-			fileInput.addEventListener('change', () => {
-				const files = fileInput.files;
-
-				if (files.length > 0) {
-					previousFiles = Array.from(files);
-					clearButton.style.display = 'inline-block';
-				} else {
-					if (previousFiles.length > 0) {
-						const dataTransfer = new DataTransfer();
-						previousFiles.forEach(file => dataTransfer.items.add(file));
-						fileInput.files = dataTransfer.files;
-						clearButton.style.display = 'inline-block';
-					}
-				}
-			});
-
-			clearButton.addEventListener('click', (event) => {
-				event.preventDefault();
-				fileInput.value = '';
-				previousFiles = [];
-				clearButton.style.display = 'none';
-			});
-		});
-
-		const requiredInputs = document.querySelectorAll('.form-required:not(label)');
-		const emailInputs = document.querySelectorAll("input[type=email]");
-		const multiselectInputs = document.querySelectorAll('.multiselect');
-
-		multiselectInputs.forEach((input) => {
-			const data = getDataValues(input);
-			const errorElement = document.querySelector(`.error-${input.id}`);
-
-			if (data.radio) {
-				const checkboxes = input.querySelectorAll('.multiselect-checkbox');
-				checkboxes.forEach((checkbox) => {
-					checkbox.addEventListener('change', (event) => {
-						if (event.target.checked) {
-							checkboxes.forEach((cb) => {
-								if (cb !== event.target) {
-									cb.checked = false;
-								}
-							});
-							updateError(errorElement, 'remove');
-						}
-					});
-				});
-			}
-
-			input.addEventListener('click', () => {
-				validateMultiselect(input, errorElement);
-			});
-		});
-
-		requiredInputs.forEach((input) => {
-			const errorSelector = `.error-${input.id}`;
-			const error = document.querySelector(errorSelector);
-
-			if (input.classList.contains('multiselect')) {
-				input.addEventListener('click', () => {
-					validateMultiselect(input, error);
-				});
-			} else {
-				input.addEventListener('blur', () => {
-					validateInput(input, error);
-				});
-				input.addEventListener('input', () => {
-					updateError(error, 'remove');
-				});
-			}
-		});
-
-		emailInputs.forEach(function (input) {
-			const errorSelector = `.error-${input.id}`;
-			const error = document.querySelector(errorSelector);
-
-			input.addEventListener("input", function(event) {
-				const value = input.value.trim();
-				if (value === "") {
-					error.classList.remove('error-show');
-				} else {
-					validateEmailInput(value, error);
-				}
-			});
-		});
-
-		let interval = 1000;
-		let timeoutId;
-		let formWaitingUrl;
-
-		const checkExecutionStatus = async () => {
-			if (!interval) return;
+			registerBtn.disabled = true;
+			registerBtn.classList.add('loading');
 
 			try {
-				const response = await fetch(`${formWaitingUrl ?? window.location.href}/n8n-execution-status`);
-				const text = (await response.text()).trim();
-
-				if (text === "form-waiting") {
-					window.location.replace(formWaitingUrl ?? window.location.href);
-					return;
-				}
-
-				if (text === "success") {
-					form.style.display = 'none';
-					document.querySelector('#submitted-form').style.display = 'block';
-					clearTimeout(timeoutId);
-					return;
-				}
-
-				if (text === "null") {
-					form.style.display = 'none';
-					document.querySelector('#submitted-form').style.display = 'block';
-					document.querySelector('#submitted-header').textContent = 'Could not get execution status';
-					document.querySelector('#submitted-content').textContent =
-						'Make sure "Save successful production executions" is enabled in your workflow settings';
-					clearTimeout(timeoutId);
-					return;
-				}
-
-				if(["canceled", "crashed", "error" ].includes(text)) {
-					form.style.display = 'none';
-					document.querySelector('#submitted-form').style.display = 'block';
-					document.querySelector('#submitted-header').textContent = 'Problem submitting response';
-					document.querySelector('#submitted-content').textContent =
-						'Please try again or contact support if the problem persists';
-					clearTimeout(timeoutId);
-					return;
-				}
-
-				interval = Math.round(interval * 1.1);
-				timeoutId = setTimeout(checkExecutionStatus, interval);
-			} catch (error) {
-				console.error("Error fetching data:", error);
-			}
-		};
-
-		form.addEventListener('submit', (e) => {
-			const valid = [];
-			e.preventDefault();
-
-			emailInputs.forEach(function (input) {
-				const value = input.value.trim();
-				if(value === '') {
-					return;
-				}
-				const errorSelector = `.error-${input.id}`;
-				const error = document.querySelector(errorSelector);
-				valid.push(validateEmailInput(value, error));
-			});
-
-			[...requiredInputs, ...multiselectInputs].forEach((input) => {
-				const errorSelector = `.error-${input.id}`;
-				const error = document.querySelector(errorSelector);
-
-				if (input.classList.contains('multiselect')) {
-					valid.push(validateMultiselect(input, error));
-				} else {
-					valid.push(validateInput(input, error));
-				}
-			});
-
-			if (valid.every((v) => v)) {
-				var formData = new FormData();
-
-				for (const filed of form.elements) {
-					if(filed.type !== 'file') {
-						formData.append(filed.name, filed.value);
-					} else {
-						for (const file of filed.files) {
-							if(file.size === 0) {
-								continue;
-							}
-							formData.append(filed.name, file);
-						}
-					}
-				}
-				document.querySelectorAll('.multiselect').forEach((multiselect) => {
- 					const selectedValues = getSelectedValues(multiselect);
- 					formData.append(multiselect.id, JSON.stringify(selectedValues));
- 				});
-				document.querySelector('#submit-btn').disabled = true;
-				document.querySelector('#submit-btn').style.cursor = 'not-allowed';
-				document.querySelector('#submit-btn span').style.display = 'inline-block';
-
-				let postUrl = '';
-				if (!window.location.href.includes('form-waiting')) {
-					postUrl = window.location.search;
-				}
-
-				const authToken = '';
-				const headers = {};
-				if(authToken) {
-					headers['x-auth-token'] = authToken;
-				}
-
-				fetch(postUrl, {
+				const response = await fetch(WEBHOOK_URL, {
 					method: 'POST',
-					body: formData,
-					headers,
-				})
-					.then(async function (response) {
-						const useResponseData = document.getElementById("useResponseData").value;
-
-						if (useResponseData === "true") {
-							const text = await response.text();
-							let json;
-
-							try{
-								json = JSON.parse(text);
-							} catch (e) {}
-
-							if(json?.formWaitingUrl) {
-								formWaitingUrl = json.formWaitingUrl;
-								clearTimeout(timeoutId);
-								timeoutId = setTimeout(checkExecutionStatus, interval);
-								return;
-							}
-
-							if (json?.redirectURL) {
-								window.location.replace(json.redirectURL);
-								return;
-							}
-
-							if (json?.formSubmittedText) {
-								form.style.display = 'none';
-								document.querySelector('#submitted-form').style.display = 'block';
-								document.querySelector('#submitted-content').textContent = json.formSubmittedText;
-								return;
-							}
-
-							if (text) {
-								document.body.innerHTML = text;
-								return;
-							}
-
-							if (text === '') {
-								// this is empty cleanup response from responsePromise
-								// no need to keep checking execution status
-								clearTimeout(timeoutId);
-								interval = 0;
-							}
-						}
-
-						if (response.status === 200) {
-							if(response.redirected) {
-								window.location.replace(response.url);
-								return;
-							}
-							const redirectUrl = document.getElementById("redirectUrl");
-							if (redirectUrl) {
-								window.location.replace(redirectUrl.href);
-							} else {
-								form.style.display = 'none';
-								document.querySelector('#submitted-form').style.display = 'block';
-							}
-						} else {
-							form.style.display = 'none';
-							document.querySelector('#submitted-form').style.display = 'block';
-							document.querySelector('#submitted-header').textContent = 'Problem submitting response';
-							document.querySelector('#submitted-content').textContent =
-								'Please try again or contact support if the problem persists';
-						}
-
-						return;
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						full_name: nameInput.value.trim(),
+						program: 'برنامج التداول المباشر',
+						price_usd: 500,
+						period: 'September 2026 - June 2027',
+						submitted_at: new Date().toISOString(),
+						source_url: window.location.href
 					})
-					.catch(function (error) {
-						console.error('Error:', error);
-					})
-					.finally(() => {
-						if (window.location.href.includes('form-waiting')) {
-							clearTimeout(timeoutId);
-							timeoutId = setTimeout(checkExecutionStatus, interval);
-						}
+				});
+
+				if (response.ok) {
+					showResult({
+						success: true,
+						title: 'تم استلام طلبك بنجاح',
+						text: 'شكرًا لتسجيلك في برنامج التداول المباشر. سيتواصل معك فريقنا قريبًا لتأكيد التفاصيل والخطوات التالية.'
 					});
+				} else {
+					throw new Error('Request failed with status ' + response.status);
+				}
+			} catch (error) {
+				console.error('Webhook error:', error);
+				showResult({
+					success: false,
+					title: 'حدث خطأ أثناء إرسال طلبك',
+					text: 'يرجى المحاولة مرة أخرى، أو التواصل معنا مباشرة إذا استمرت المشكلة.'
+				});
+			} finally {
+				registerBtn.disabled = false;
+				registerBtn.classList.remove('loading');
 			}
+		}
+
+		registerBtn.addEventListener('click', submitRegistration);
+
+		retryBtn.addEventListener('click', () => {
+			resultState.style.display = 'none';
+			offerState.style.display = 'block';
 		});
 	</script>
 </body>
