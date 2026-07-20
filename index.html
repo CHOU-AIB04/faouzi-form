@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faouzi Community</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+	/* Typography */
+	--font-display: 'Fraunces', 'Georgia', serif;
+	--font-family: 'Inter', -apple-system, sans-serif;
+	--font-weight-normal: 400;
+	--font-weight-bold: 600;
+	--font-size-body: 13px;
+	--font-size-label: 13px;
+	--font-size-test-notice: 12px;
+	--font-size-input: 15px;
+	--font-size-header: 30px;
+	--font-size-paragraph: 14.5px;
+	--font-size-link: 12px;
+	--font-size-error: 12.5px;
+	--font-size-subheader: 14px;
+
+	/* Palette — warm espresso / brushed gold */
+	--color-background: #0d0b09;
+	--color-background-2: #14100c;
+	--color-card-bg: rgba(255, 253, 248, 0.035);
+	--color-card-border: rgba(212, 175, 110, 0.16);
+	--color-card-shadow: rgba(0, 0, 0, 0.55);
+	--color-gold: #cda15b;
+	--color-gold-bright: #eccd8f;
+	--color-header: #f5efe3;
+	--color-header-subtext: #a89a83;
+	--color-label: #cabfae;
+	--color-input-border: rgba(255, 255, 255, 0.10);
+	--color-input-text: #efe8db;
+	--color-focus-border: #cda15b;
+	--color-submit-btn-bg: linear-gradient(135deg, #d8ae67, #b4823a);
+	--color-submit-btn-text: #16110a;
+	--color-error: #ff7a68;
+	--color-required: #cda15b;
+	--color-html-text: #cabfae;
+
+	/* Radii */
+	--border-radius-card: 18px;
+	--border-radius-input: 10px;
+
+	/* Spacing */
+	--padding-container-top: 24px;
+	--padding-card: 40px;
+	--margin-bottom-card: 16px;
+	--padding-form-input: 14px;
+
+	/* Dimensions */
+	--container-width: 440px;
+	--submit-btn-height: 52px;
+
+	--box-shadow-card: 0 30px 70px -20px var(--color-card-shadow), 0 0 0 1px rgba(255,255,255,0.02);
+	--opacity-placeholder: 0.42;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+	background: var(--color-background);
+	font-family: var(--font-family);
+	color: var(--color-html-text);
+	-webkit-font-smoothing: antialiased;
+}
+
+/* Ambient backdrop */
+body {
+	position: relative;
+	overflow-x: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 48px 20px;
+}
+
+body::before {
+	content: "";
+	position: fixed;
+	inset: -20%;
+	background:
+		radial-gradient(circle at 22% 20%, rgba(205,161,91,0.16), transparent 45%),
+		radial-gradient(circle at 82% 78%, rgba(180,130,58,0.10), transparent 50%),
+		radial-gradient(circle at 50% 100%, rgba(90,70,40,0.12), transparent 60%),
+		var(--color-background);
+	z-index: 0;
+	pointer-events: none;
+}
+
+body::after {
+	/* fine grain texture for a premium, non-flat surface */
+	content: "";
+	position: fixed;
+	inset: 0;
+	z-index: 0;
+	pointer-events: none;
+	opacity: 0.035;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.container {
+	position: relative;
+	z-index: 1;
+	width: 100%;
+	max-width: var(--container-width);
+	padding-top: var(--padding-container-top);
+}
+
+.brand-mark {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	margin-bottom: 22px;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	font-size: 11px;
+	color: var(--color-gold);
+	opacity: 0.85;
+}
+
+.brand-mark .line {
+	width: 24px;
+	height: 1px;
+	background: linear-gradient(90deg, transparent, var(--color-gold));
+}
+.brand-mark .line.right { background: linear-gradient(90deg, var(--color-gold), transparent); }
+
+.card {
+	position: relative;
+	background: var(--color-card-bg);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+	border: 1px solid var(--color-card-border);
+	border-radius: var(--border-radius-card);
+	box-shadow: var(--box-shadow-card);
+	padding: var(--padding-card);
+	margin-bottom: var(--margin-bottom-card);
+	animation: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes rise {
+	from { opacity: 0; transform: translateY(14px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+
+/* thin gold hairline along the top edge of the card */
+.card::before {
+	content: "";
+	position: absolute;
+	top: 0; left: 14%;
+	width: 72%;
+	height: 1px;
+	background: linear-gradient(90deg, transparent, var(--color-gold-bright), transparent);
+	opacity: 0.6;
+}
+
+.form-header {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.form-header h1 {
+	font-family: var(--font-display);
+	font-weight: 500;
+	font-size: var(--font-size-header);
+	color: var(--color-header);
+	letter-spacing: 0.01em;
+	margin: 0 0 8px;
+}
+
+.form-header p {
+	font-size: var(--font-size-paragraph);
+	color: var(--color-header-subtext);
+	margin: 0;
+	line-height: 1.5;
+}
+
+.inputs-wrapper { display: flex; flex-direction: column; gap: 18px; }
+
+.form-group { display: flex; flex-direction: column; gap: 7px; }
+
+.form-label {
+	font-size: var(--font-size-label);
+	color: var(--color-label);
+	font-weight: 500;
+	letter-spacing: 0.01em;
+}
+
+.form-required::after {
+	content: " *";
+	color: var(--color-required);
+}
+
+.form-input {
+	width: 100%;
+	padding: var(--padding-form-input) 15px;
+	font-size: var(--font-size-input);
+	font-family: var(--font-family);
+	color: var(--color-input-text);
+	background: rgba(255,255,255,0.035);
+	border: 1px solid var(--color-input-border);
+	border-radius: var(--border-radius-input);
+	outline: none;
+	transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.form-input::placeholder { opacity: var(--opacity-placeholder); color: var(--color-input-text); }
+
+.form-input:hover { border-color: rgba(255,255,255,0.18); }
+
+.form-input:focus {
+	border-color: var(--color-focus-border);
+	background: rgba(255,255,255,0.05);
+	box-shadow: 0 0 0 3px rgba(205,161,91,0.14);
+}
+
+p[class^="error-"] {
+	font-size: var(--font-size-error);
+	color: var(--color-error);
+	margin: 0;
+	max-height: 0;
+	overflow: hidden;
+	opacity: 0;
+	transition: max-height 0.2s ease, opacity 0.2s ease;
+}
+
+p[class^="error-"].error-show {
+	max-height: 40px;
+	opacity: 1;
+	margin-top: 2px;
+}
+
+.error-hidden { display: block; }
+
+#submit-btn {
+	width: 100%;
+	height: var(--submit-btn-height);
+	margin-top: 28px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	background: var(--color-submit-btn-bg);
+	color: var(--color-submit-btn-text);
+	border: none;
+	border-radius: var(--border-radius-input);
+	font-family: var(--font-family);
+	font-size: 15px;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+	cursor: pointer;
+	transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+	box-shadow: 0 10px 30px -10px rgba(205,161,91,0.55);
+}
+
+#submit-btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
+#submit-btn:active { transform: translateY(0); }
+
+#submit-btn:disabled {
+	filter: grayscale(0.15) brightness(0.85);
+	cursor: not-allowed;
+	transform: none;
+}
+
+#submit-btn span { display: none; line-height: 0; }
+#submit-btn:disabled span { display: inline-flex; animation: spin 0.9s linear infinite; }
+#submit-btn svg path { fill: currentColor; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+#submitted-form {
+	text-align: center;
+	animation: rise 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#submitted-form .form-header { margin-bottom: 0; }
+
+#submitted-header {
+	font-family: var(--font-display);
+}
+
+.footnote {
+	text-align: center;
+	font-size: 11px;
+	letter-spacing: 0.04em;
+	color: rgba(168,154,131,0.5);
+	margin-top: 22px;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+
+		<div class="brand-mark">
+			<span class="line"></span>
+			<span>Faouzi Community</span>
+			<span class="line right"></span>
+		</div>
+
+		<section>
+
+			<form class="card" action="#" method="POST" name="n8n-form" id="n8n-form" novalidate="">
+				<div class="form-header">
+					<h1>Rejoignez la liste</h1>
+					<p style="white-space: pre-line">Laissez vos coordonnées pour rester connecté à la communauté.</p>
+				</div>
+
+				<div class="inputs-wrapper">
+					<div class="form-group">
+						<label class="form-label form-required" for="field-0">Vos nom et prénom</label>
+						<input class="form-input" type="text" id="field-0" name="field-0" value="" placeholder="Ex. Chouaib El Amrani">
+						<p class="error-field-0 error-hidden">
+							This field is required
+						</p>
+					</div>
+				</div>
+
+				<button id="submit-btn" type="submit">
+					<span><svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 0 512 512">
+							<path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"></path>
+						</svg></span>
+					Rejoindre
+				</button>
+			</form>
+
+			<div class="card" id="submitted-form" style="display: none;">
+				<div class="form-header">
+						<h1 id="submitted-header">Merci !</h1>
+						<p id="submitted-content">
+							Votre inscription a bien été enregistrée.
+						</p>
+				</div>
+			</div>
+
+			<p class="footnote">Faouzi Community</p>
+
+			<input id="useResponseData" style="display: none;" value="false">
+		</section>
+	</div>
+	<script>
+		function updateError(errorElement, action = 'add', message = '') {
+			if(action === 'add') {
+				errorElement.textContent = message;
+				errorElement.classList.add('error-show');
+			} else {
+				errorElement.classList.remove('error-show');
+			}
+		}
+
+		function validateInput(input, errorElement) {
+			const value = input.value.trim();
+			const type = input.type;
+
+			if (type === 'email' && value !== '') {
+				return validateEmailInput(value, errorElement);
+			} else if (type === 'number' && value !== '') {
+				if (isNaN(value)) {
+					updateError(errorElement, 'add', 'Enter only numbers in this field');
+					return false;
+				} else {
+					updateError(errorElement, 'remove');
+					return true;
+				}
+			} else if (value === '') {
+				updateError(errorElement, 'add', 'This field is required');
+				return false;
+			} else {
+				updateError(errorElement, 'remove');
+				return true;
+			}
+		}
+
+		function validateEmailInput(value, errorElement) {
+			const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+			const isValidEmail = regex.test(value);
+
+			if (!isValidEmail) {
+				updateError(errorElement, 'add', 'Enter a valid email address in this field');
+				return false;
+			} else {
+				errorElement.textContent = 'This field is required';
+				updateError(errorElement, 'remove');
+				return true;
+			}
+		}
+
+		function getSelectedValues(input) {
+			const selectedValues = [];
+			const checkboxes = input.querySelectorAll('.multiselect-checkbox');
+
+			checkboxes.forEach((checkbox, index) => {
+				if (checkbox.checked) {
+					selectedValues.push(checkbox.value.trim());
+				}
+			});
+
+			return selectedValues;
+		}
+
+		function getDataValues(input) {
+			const radio = input.dataset.radioSelect ? true : false;
+			const exact = input.dataset.exactSelect ? parseInt(input.dataset.exactSelect, 10) : null;
+			const maxSelect = input.dataset.maxSelect ? parseInt(input.dataset.maxSelect, 10) : null;
+			const minSelect = input.dataset.minSelect ? parseInt(input.dataset.minSelect, 10) : null;
+			return { radio, exact, maxSelect, minSelect };
+		}
+
+		function validateMultiselect(input, errorElement) {
+			const values = getSelectedValues(input);
+			const data = getDataValues(input);
+			const required = input.classList.contains('form-required');
+
+			if (required && !values.length) {
+				updateError(errorElement, 'add', 'This field is required');
+				return false;
+			}
+
+			if (data.exact && values.length !== data.exact) {
+				const optionText = data.exact === 1 ? 'option' : 'options';
+				updateError(errorElement, 'add', `You must select exactly ${data.exact} ${optionText}`);
+				return false;
+			}
+
+			if (data.minSelect && values.length < data.minSelect) {
+				const optionText = data.minSelect === 1 ? 'option' : 'options';
+				updateError(errorElement, 'add', `You must select at least ${data.minSelect} ${optionText}`);
+				return false;
+			}
+
+			if(data.maxSelect && values.length > data.maxSelect) {
+				const optionText = data.maxSelect === 1 ? 'option' : 'options';
+				updateError(errorElement, 'add', `You can select a maximum of ${data.maxSelect} ${optionText}`);
+				return false;
+			}
+
+			updateError(errorElement, 'remove');
+			return true;
+		}
+
+		const form = document.querySelector('#n8n-form');
+
+		document.querySelectorAll("input[type=number]").forEach(function (element) {
+			element.addEventListener("wheel", function(event) {
+				if (document.activeElement === event.target) {
+					event.preventDefault();
+				}
+			});
+		});
+
+		document.querySelectorAll('input[type="file"]').forEach(fileInput => {
+			const clearButton = fileInput.nextElementSibling;
+			let previousFiles = [];
+
+			fileInput.addEventListener('change', () => {
+				const files = fileInput.files;
+
+				if (files.length > 0) {
+					previousFiles = Array.from(files);
+					clearButton.style.display = 'inline-block';
+				} else {
+					if (previousFiles.length > 0) {
+						const dataTransfer = new DataTransfer();
+						previousFiles.forEach(file => dataTransfer.items.add(file));
+						fileInput.files = dataTransfer.files;
+						clearButton.style.display = 'inline-block';
+					}
+				}
+			});
+
+			clearButton.addEventListener('click', (event) => {
+				event.preventDefault();
+				fileInput.value = '';
+				previousFiles = [];
+				clearButton.style.display = 'none';
+			});
+		});
+
+		const requiredInputs = document.querySelectorAll('.form-required:not(label)');
+		const emailInputs = document.querySelectorAll("input[type=email]");
+		const multiselectInputs = document.querySelectorAll('.multiselect');
+
+		multiselectInputs.forEach((input) => {
+			const data = getDataValues(input);
+			const errorElement = document.querySelector(`.error-${input.id}`);
+
+			if (data.radio) {
+				const checkboxes = input.querySelectorAll('.multiselect-checkbox');
+				checkboxes.forEach((checkbox) => {
+					checkbox.addEventListener('change', (event) => {
+						if (event.target.checked) {
+							checkboxes.forEach((cb) => {
+								if (cb !== event.target) {
+									cb.checked = false;
+								}
+							});
+							updateError(errorElement, 'remove');
+						}
+					});
+				});
+			}
+
+			input.addEventListener('click', () => {
+				validateMultiselect(input, errorElement);
+			});
+		});
+
+		requiredInputs.forEach((input) => {
+			const errorSelector = `.error-${input.id}`;
+			const error = document.querySelector(errorSelector);
+
+			if (input.classList.contains('multiselect')) {
+				input.addEventListener('click', () => {
+					validateMultiselect(input, error);
+				});
+			} else {
+				input.addEventListener('blur', () => {
+					validateInput(input, error);
+				});
+				input.addEventListener('input', () => {
+					updateError(error, 'remove');
+				});
+			}
+		});
+
+		emailInputs.forEach(function (input) {
+			const errorSelector = `.error-${input.id}`;
+			const error = document.querySelector(errorSelector);
+
+			input.addEventListener("input", function(event) {
+				const value = input.value.trim();
+				if (value === "") {
+					error.classList.remove('error-show');
+				} else {
+					validateEmailInput(value, error);
+				}
+			});
+		});
+
+		let interval = 1000;
+		let timeoutId;
+		let formWaitingUrl;
+
+		const checkExecutionStatus = async () => {
+			if (!interval) return;
+
+			try {
+				const response = await fetch(`${formWaitingUrl ?? window.location.href}/n8n-execution-status`);
+				const text = (await response.text()).trim();
+
+				if (text === "form-waiting") {
+					window.location.replace(formWaitingUrl ?? window.location.href);
+					return;
+				}
+
+				if (text === "success") {
+					form.style.display = 'none';
+					document.querySelector('#submitted-form').style.display = 'block';
+					clearTimeout(timeoutId);
+					return;
+				}
+
+				if (text === "null") {
+					form.style.display = 'none';
+					document.querySelector('#submitted-form').style.display = 'block';
+					document.querySelector('#submitted-header').textContent = 'Could not get execution status';
+					document.querySelector('#submitted-content').textContent =
+						'Make sure "Save successful production executions" is enabled in your workflow settings';
+					clearTimeout(timeoutId);
+					return;
+				}
+
+				if(["canceled", "crashed", "error" ].includes(text)) {
+					form.style.display = 'none';
+					document.querySelector('#submitted-form').style.display = 'block';
+					document.querySelector('#submitted-header').textContent = 'Problem submitting response';
+					document.querySelector('#submitted-content').textContent =
+						'Please try again or contact support if the problem persists';
+					clearTimeout(timeoutId);
+					return;
+				}
+
+				interval = Math.round(interval * 1.1);
+				timeoutId = setTimeout(checkExecutionStatus, interval);
+			} catch (error) {
+				console.error("Error fetching data:", error);
+			}
+		};
+
+		form.addEventListener('submit', (e) => {
+			const valid = [];
+			e.preventDefault();
+
+			emailInputs.forEach(function (input) {
+				const value = input.value.trim();
+				if(value === '') {
+					return;
+				}
+				const errorSelector = `.error-${input.id}`;
+				const error = document.querySelector(errorSelector);
+				valid.push(validateEmailInput(value, error));
+			});
+
+			[...requiredInputs, ...multiselectInputs].forEach((input) => {
+				const errorSelector = `.error-${input.id}`;
+				const error = document.querySelector(errorSelector);
+
+				if (input.classList.contains('multiselect')) {
+					valid.push(validateMultiselect(input, error));
+				} else {
+					valid.push(validateInput(input, error));
+				}
+			});
+
+			if (valid.every((v) => v)) {
+				var formData = new FormData();
+
+				for (const filed of form.elements) {
+					if(filed.type !== 'file') {
+						formData.append(filed.name, filed.value);
+					} else {
+						for (const file of filed.files) {
+							if(file.size === 0) {
+								continue;
+							}
+							formData.append(filed.name, file);
+						}
+					}
+				}
+				document.querySelectorAll('.multiselect').forEach((multiselect) => {
+ 					const selectedValues = getSelectedValues(multiselect);
+ 					formData.append(multiselect.id, JSON.stringify(selectedValues));
+ 				});
+				document.querySelector('#submit-btn').disabled = true;
+				document.querySelector('#submit-btn').style.cursor = 'not-allowed';
+				document.querySelector('#submit-btn span').style.display = 'inline-block';
+
+				let postUrl = '';
+				if (!window.location.href.includes('form-waiting')) {
+					postUrl = window.location.search;
+				}
+
+				const authToken = '';
+				const headers = {};
+				if(authToken) {
+					headers['x-auth-token'] = authToken;
+				}
+
+				fetch(postUrl, {
+					method: 'POST',
+					body: formData,
+					headers,
+				})
+					.then(async function (response) {
+						const useResponseData = document.getElementById("useResponseData").value;
+
+						if (useResponseData === "true") {
+							const text = await response.text();
+							let json;
+
+							try{
+								json = JSON.parse(text);
+							} catch (e) {}
+
+							if(json?.formWaitingUrl) {
+								formWaitingUrl = json.formWaitingUrl;
+								clearTimeout(timeoutId);
+								timeoutId = setTimeout(checkExecutionStatus, interval);
+								return;
+							}
+
+							if (json?.redirectURL) {
+								window.location.replace(json.redirectURL);
+								return;
+							}
+
+							if (json?.formSubmittedText) {
+								form.style.display = 'none';
+								document.querySelector('#submitted-form').style.display = 'block';
+								document.querySelector('#submitted-content').textContent = json.formSubmittedText;
+								return;
+							}
+
+							if (text) {
+								document.body.innerHTML = text;
+								return;
+							}
+
+							if (text === '') {
+								// this is empty cleanup response from responsePromise
+								// no need to keep checking execution status
+								clearTimeout(timeoutId);
+								interval = 0;
+							}
+						}
+
+						if (response.status === 200) {
+							if(response.redirected) {
+								window.location.replace(response.url);
+								return;
+							}
+							const redirectUrl = document.getElementById("redirectUrl");
+							if (redirectUrl) {
+								window.location.replace(redirectUrl.href);
+							} else {
+								form.style.display = 'none';
+								document.querySelector('#submitted-form').style.display = 'block';
+							}
+						} else {
+							form.style.display = 'none';
+							document.querySelector('#submitted-form').style.display = 'block';
+							document.querySelector('#submitted-header').textContent = 'Problem submitting response';
+							document.querySelector('#submitted-content').textContent =
+								'Please try again or contact support if the problem persists';
+						}
+
+						return;
+					})
+					.catch(function (error) {
+						console.error('Error:', error);
+					})
+					.finally(() => {
+						if (window.location.href.includes('form-waiting')) {
+							clearTimeout(timeoutId);
+							timeoutId = setTimeout(checkExecutionStatus, interval);
+						}
+					});
+			}
+		});
+	</script>
+</body>
+</html>
